@@ -1,0 +1,68 @@
+  public interface MyCont1{
+  void addContact();
+  void viewContact();
+  void deleteContact();
+  void searchContact() 
+ } 
+  
+public class MyContact implement MyCont1 { 
+  Scanner sc = new Scanner(System.in);
+MyLinked<Person> MyContactBook = new MyLinked<>();
+    MyLinked<String> contactNumbers = new MyLinked<>();
+    
+    public void addContact() {
+        System.out.println("You have chosen to add a new contact:");
+        String firstname = getFirstName();
+        String lastname = getLastName();
+        contactNumbers = GetContactNumbers();
+        String Email = getEmail();
+        Person newContact;
+        newContact = new Person(firstname, lastname, Email, contactNumbers);
+        int index = compareFirstName(firstname);
+        MyContactBook.add(newContact, index);
+        System.out.println("Contact Added SucessFully");
+    }
+
+   
+    public void viewContact() {
+      
+        for (int i = 0; i < MyContactBook.size; i++) {
+            Person response = MyContactBook.getData(i);
+            System.out.println(response);
+  }
+
+    public void deleteContact() {
+        Scanner sc = new Scanner(System.in);
+        printNames();
+        System.out.print("Press the number against the contact to delete it: ");
+         for (int i = 0; i < MyContactBook.size; i++) {
+         System.out.println(i+1)+"."+person.getfirstname(contact.get(i));
+         }
+         int i=sc.next();
+         contact.remove(i);
+    }
+
+    @Override
+    public void searchContact(){
+        int size = 0;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("You could search for a contact from their first names:");
+        String name = sc.next();
+        name = name.trim();
+        MyLinked<Integer> lists = matchFirst(name);
+        boolean a = false;
+        size = lists.size;
+        if (size > 1) {
+            a = true;
+        }
+
+        System.out.println(a ? size + " Matches found!" : size + " Match found!");
+        for (int i = 0; i < size; i++) {
+            int index = lists.getData(i);
+            System.out.println(MyContactBook.getData(index));
+        }
+
+    }
+
+
+}
